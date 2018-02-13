@@ -19,7 +19,7 @@ public class Parameter {
     @Column(name = "value")
     private String value;
 
-    @Column(name = "product", nullable = false)
+    @ManyToOne
     private Product product;
 
 }

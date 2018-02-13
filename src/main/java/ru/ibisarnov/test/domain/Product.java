@@ -40,19 +40,20 @@ public class Product {
     @Column(length = 3)
     private Currency currency;
 
-    @Column(name = "category", nullable = false)
+    @ManyToOne
     private Category category;
 
     @OneToMany(mappedBy = "product")
     @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
     @BatchSize(size = 20)
+    @ElementCollection(targetClass = Parameter.class)
     private Set<Parameter> parameters = new HashSet<>();
 
     /**
      * Even though the same pictures might be representing different models,
      * I don't like an idea having the m-t-m relation here.
      * Therefore, leaving it as-is due to both simplicity and laziness:)
-     *
+     * <p>
      * The relation itself might be implemented via @JoinTable with both joinColumn and inverseJoinColumn
      */
     @OneToMany(mappedBy = "product")

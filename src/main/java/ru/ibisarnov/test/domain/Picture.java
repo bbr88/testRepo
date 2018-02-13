@@ -16,7 +16,7 @@ public class Picture {
     @Column(name = "source", nullable = false, unique = true)
     private String source;
 
-    @Column(name = "product", nullable = false)
+    @ManyToOne
     private Product product;
 
 }
