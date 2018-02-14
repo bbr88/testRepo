@@ -1,4 +1,4 @@
-package ru.ibisarnov.test.domain.dto;
+package ru.ibisarnov.test.domain.dto.element;
 
 import lombok.Data;
 

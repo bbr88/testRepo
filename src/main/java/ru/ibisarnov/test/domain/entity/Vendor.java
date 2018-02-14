@@ -1,4 +1,4 @@
-package ru.ibisarnov.test.domain;
+package ru.ibisarnov.test.domain.entity;
 
 import lombok.Data;
 

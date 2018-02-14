@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import ru.ibisarnov.test.domain.Product;
+import ru.ibisarnov.test.domain.entity.Product;
 
 import javax.persistence.EntityManagerFactory;
 

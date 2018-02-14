@@ -1,4 +1,6 @@
-package ru.ibisarnov.test.domain.dto;
+package ru.ibisarnov.test.domain.dto.list;
+
+import ru.ibisarnov.test.domain.dto.element.CategoryDto;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
