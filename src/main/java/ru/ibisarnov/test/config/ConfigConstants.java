@@ -16,6 +16,6 @@ final class ConfigConstants {
 
         //Xml Job Configuration
         static final String YML_PATH_PROPERTY = "yml.path";
-        static final String PRODUCT_ROOT = "offer id";
+        static final String PRODUCT_ROOT = "offer";
     }
 }

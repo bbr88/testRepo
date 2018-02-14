@@ -11,9 +11,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import ru.ibisarnov.test.domain.dto.element.ShopDto;
 import ru.ibisarnov.test.domain.entity.Product;
 
 import javax.persistence.EntityManagerFactory;
+
+import java.util.HashMap;
 
 import static ru.ibisarnov.test.config.ConfigConstants.BatchConstants.PRODUCT_ROOT;
 import static ru.ibisarnov.test.config.ConfigConstants.BatchConstants.YML_PATH_PROPERTY;
@@ -26,6 +29,16 @@ public class XmlJobConfiguration {
     @Autowired
     public XmlJobConfiguration(EntityManagerFactory factory) {
         this.factory = factory;
+    }
+
+    @Bean
+    public Jaxb2Marshaller marshaller() {
+        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+        marshaller.setClassesToBeBound(ShopDto.class);
+        marshaller.setMarshallerProperties(new HashMap<String, Object>() {{
+            put(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        }});
+        return marshaller;
     }
 
     @Bean

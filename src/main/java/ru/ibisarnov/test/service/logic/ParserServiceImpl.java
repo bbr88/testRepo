@@ -1,4 +1,4 @@
-package ru.ibisarnov.test.service;
+package ru.ibisarnov.test.service.logic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
