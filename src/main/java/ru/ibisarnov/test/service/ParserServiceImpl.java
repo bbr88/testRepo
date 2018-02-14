@@ -28,6 +28,9 @@ public class ParserServiceImpl implements ParserService {
 
     @Override
     public void parseDocument() {
+        //read item
+        //process item, i.e. create respective entities
+        //if read items quantity >= ? then write items to db
 
     }
 }
