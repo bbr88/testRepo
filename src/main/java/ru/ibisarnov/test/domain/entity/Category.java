@@ -14,15 +14,19 @@ import java.util.Set;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "category_name", nullable = false, unique = true)
     private String categoryName;
 
-    @OneToMany(mappedBy = "category")
-    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     @BatchSize(size = 150)
     private Set<Product> products = new HashSet<>();
 
+    @Override
+    public String toString() {
+        return "Category[id:" + id
+                + ", categoryName:" + categoryName
+                + "]";
+    }
 }

@@ -12,12 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import ru.ibisarnov.test.domain.dto.element.ShopDto;
-import ru.ibisarnov.test.domain.entity.Product;
 
 import static ru.ibisarnov.test.config.ConfigConstants.BatchConstants.*;
 
 @Configuration
+@EnableScheduling
 @EnableBatchProcessing
 public class BatchConfiguration {
 
@@ -40,32 +41,16 @@ public class BatchConfiguration {
     @Bean
     public Step parserStep() {
         return stepBuilderFactory.get(STEP1)
-                .<Product, Product>chunk(10)
-                //todo .reader()
+                .<ShopDto, ShopDto>chunk(100)
+                .reader(productReader)
+                .writer(productWriter)
                 .build();
     }
 
-    @Bean
-    public Step dbWriterStep() {
-        stepBuilderFactory.get(STEP2);
-        //todo
-        return null;
-    }
-
-    @Bean
-    public Step resultsPrintoutStep() {
-        stepBuilderFactory.get(STEP3);
-        //todo
-        return null;
-    }
-
-    @Bean
-    public Job job(Step parserStep, Step dbWriterStep, Step resultsPrintoutStep) {
+    @Bean("shopJob")
+    public Job job(Step parserStep) {
         return jobBuilderFactory.get(JOB_NAME)
-                .incrementer(new RunIdIncrementer())
                 .start(parserStep)
-                .next(dbWriterStep)
-                .next(resultsPrintoutStep)
                 .build();
     }
 

@@ -1,10 +1,8 @@
 package ru.ibisarnov.test.service.logic;
 
 import org.springframework.batch.item.ItemReader;
-import org.springframework.batch.item.NonTransientResourceException;
-import org.springframework.batch.item.ParseException;
-import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Component;
@@ -18,6 +16,10 @@ public class ProductReader implements ItemReader<ShopDto> {
 
     private final Jaxb2Marshaller marshaller;
 
+    @Value("${yml.path}")
+    private String ymlFilename;
+    private boolean read = false;
+
     @Autowired
     public ProductReader(Jaxb2Marshaller marshaller) {
         this.marshaller = marshaller;
@@ -25,9 +27,13 @@ public class ProductReader implements ItemReader<ShopDto> {
 
     @Override
     public ShopDto read() throws Exception {
+        if (read) {
+            return null;
+        }
         ShopDto shop;
         shop = (ShopDto) marshaller
-                .unmarshal(new StreamSource(new FileInputStream(new ClassPathResource("yml_test_new.xml").getFile())));
+                .unmarshal(new StreamSource(new FileInputStream(new ClassPathResource(ymlFilename).getFile())));
+        read = true;
         return shop;
     }
 }

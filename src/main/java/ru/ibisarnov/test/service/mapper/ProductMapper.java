@@ -29,7 +29,7 @@ public class ProductMapper implements EntityDtoMapper<OfferDto, Product> {
             product.setDescription(offerDto.getDescription());
             product.setGroupId(offerDto.getGroupId());
             product.setIsAvailable(Boolean.valueOf(offerDto.getAvailable()));
-            product.setCurrency(Currency.valueOf(offerDto.getCurrencyId()));
+            product.setCurrency(offerDto.getCurrencyId());
             product.setCategory(categoryRepository.findOne(Long.parseLong(offerDto.getCategoryId())));
             product.setModelId(offerDto.getId());
             product.setModelName(offerDto.getName());

@@ -13,7 +13,7 @@ public class Parameter {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "parameter_name", nullable = false, unique = true)
+    @Column(name = "parameter_name", nullable = false)
     private String parameterName;
 
     @Column(name = "value")
@@ -22,4 +22,11 @@ public class Parameter {
     @ManyToOne
     private Product product;
 
+    @Override
+    public String toString() {
+        return "Parameter[id:" + id
+                + ", parameterName:" + parameterName
+                + ", value:" + (value == null ? "" : value)
+                + "]";
+    }
 }

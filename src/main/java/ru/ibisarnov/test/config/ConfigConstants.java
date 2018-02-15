@@ -11,8 +11,7 @@ final class ConfigConstants {
         //Batch Configuration
         static final String JOB_NAME = "job";
         static final String STEP1 = "parserStep";
-        static final String STEP2 = "dbWriterStep";
-        static final String STEP3 = "resultsPrintoutStep";
+        static final String STEP2 = "resultsPrintoutStep";
 
         //Xml Job Configuration
         static final String YML_PATH_PROPERTY = "yml.path";

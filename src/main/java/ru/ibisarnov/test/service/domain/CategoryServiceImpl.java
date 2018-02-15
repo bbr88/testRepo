@@ -26,7 +26,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void saveCategory(CategoryDto category) {
         if (category != null) {
-            categoryRepository.save(categoryMapper.dtoToEntity(category));
+            Category savedCategory = categoryRepository.findOne(Long.parseLong(category.getId()));
+            if (savedCategory == null) {
+                categoryRepository.save(categoryMapper.dtoToEntity(category));
+            }
         }
     }
 
@@ -35,5 +38,10 @@ public class CategoryServiceImpl implements CategoryService {
         if (categories != null) {
             categories.forEach(this::saveCategory);
         }
+    }
+
+    @Override
+    public List<Category> findAll() {
+        return categoryRepository.findAll();
     }
 }

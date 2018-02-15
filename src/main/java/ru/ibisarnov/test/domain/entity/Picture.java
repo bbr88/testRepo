@@ -13,10 +13,17 @@ public class Picture {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "source", nullable = false, unique = true)
+    @Column(name = "source", nullable = false)
     private String source;
 
     @ManyToOne
     private Product product;
+
+    @Override
+    public String toString() {
+        return "Picture:[id:" + id +
+                ", source:" + source
+                + "]";
+    }
 
 }

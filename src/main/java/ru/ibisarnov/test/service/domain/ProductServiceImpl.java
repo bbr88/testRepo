@@ -66,4 +66,9 @@ public class ProductServiceImpl implements ProductService {
     public void saveAll(List<OfferDto> products) {
         products.forEach(this::saveProduct);
     }
+
+    @Override
+    public List<Product> findAll() {
+        return productRepository.findAll();
+    }
 }
